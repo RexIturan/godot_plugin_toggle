@@ -1,6 +1,7 @@
 ### Plugin Toggle
 
 Plugin Toggle is a plugin for Godot, written in c#.
+> needs to be enabled to work, Project > Project Settings > Plugins
 
 ---
 Adds 2 buttons to the toolbar.
