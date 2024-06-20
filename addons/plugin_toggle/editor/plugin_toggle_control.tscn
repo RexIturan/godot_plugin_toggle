@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://w5bde0gpppxk"]
+
+[ext_resource type="Script" path="res://addons/plugin_toggle/editor/PluginToggleControl.cs" id="1_mj4lv"]
+[ext_resource type="PackedScene" uid="uid://bmcw46pmc40ig" path="res://addons/plugin_toggle/editor/plugin_toggle_menu.tscn" id="2_jmfss"]
+[ext_resource type="Texture2D" uid="uid://b1ryemu57beud" path="res://addons/plugin_toggle/icons/Reload.svg" id="2_wts10"]
+[ext_resource type="Texture2D" uid="uid://cw4qka1b5hv3q" path="res://addons/plugin_toggle/icons/Collapse.svg" id="3_rp60q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qhla"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23url"]
+bg_color = Color(0.160784, 0.160784, 0.160784, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8dgs"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="PluginToggleControl" type="PanelContainer" node_paths=PackedStringArray("refreshButton", "checkBox", "menuToggleButton", "popupPanel", "menu")]
+custom_minimum_size = Vector2(0, 5)
+offset_right = 45.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qhla")
+script = ExtResource("1_mj4lv")
+refreshButton = NodePath("MarginContainer/PlugInToggle/RefreshButton")
+checkBox = NodePath("MarginContainer/PlugInToggle/PanelContainer/CenterContainer/CheckBox")
+menuToggleButton = NodePath("MarginContainer/PlugInToggle/DropdownButton")
+popupPanel = NodePath("PopupPanel")
+menu = NodePath("PopupPanel/PluginToggleMenu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="PlugInToggle" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="RefreshButton" type="Button" parent="MarginContainer/PlugInToggle"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Refresh All Plugins"
+icon = ExtResource("2_wts10")
+flat = true
+icon_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PlugInToggle"]
+visible = false
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_23url")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/PlugInToggle/PanelContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/PlugInToggle/PanelContainer/CenterContainer"]
+layout_mode = 2
+tooltip_text = "Enable / Disable Selected Plugins"
+
+[node name="DropdownButton" type="Button" parent="MarginContainer/PlugInToggle"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Open Dropdown"
+icon = ExtResource("3_rp60q")
+flat = true
+icon_alignment = 1
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+position = Vector2i(0, 33)
+size = Vector2i(300, 300)
+unresizable = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8dgs")
+
+[node name="PluginToggleMenu" parent="PopupPanel" node_paths=PackedStringArray("visibilityCheckbox", "pluginTable") instance=ExtResource("2_jmfss")]
+offset_bottom = 300.0
+visibilityCheckbox = NodePath("Control/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer/Cell4/CheckBox")
+pluginTable = NodePath("Control/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer")

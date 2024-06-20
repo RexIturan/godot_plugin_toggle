@@ -1,0 +1,5 @@
+[gd_resource type="SystemFont" format=3 uid="uid://dh4l1b2x6ytlx"]
+
+[resource]
+font_names = PackedStringArray("MesloLGS NF")
+multichannel_signed_distance_field = true

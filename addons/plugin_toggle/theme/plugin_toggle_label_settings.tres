@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://che6bm4we2n2j"]
+
+[ext_resource type="SystemFont" uid="uid://dh4l1b2x6ytlx" path="res://addons/plugin_toggle/theme/graph_font.tres" id="1_t5u6c"]
+
+[resource]
+font = ExtResource("1_t5u6c")
+font_size = 14

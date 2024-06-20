@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu51j2j5fp2jy"]
+
+[ext_resource type="LabelSettings" uid="uid://che6bm4we2n2j" path="res://addons/plugin_toggle/theme/plugin_toggle_label_settings.tres" id="1_k2r8t"]
+[ext_resource type="Script" path="res://addons/plugin_toggle/editor/PluginRow.cs" id="1_wtpbw"]
+[ext_resource type="SystemFont" uid="uid://dh4l1b2x6ytlx" path="res://addons/plugin_toggle/theme/graph_font.tres" id="2_55j71"]
+[ext_resource type="Texture2D" uid="uid://cvlj6ig27tafl" path="res://addons/plugin_toggle/icons/GuiVisibilityVisible.svg" id="4_ucd54"]
+[ext_resource type="Texture2D" uid="uid://bxedqn5wb1bgo" path="res://addons/plugin_toggle/icons/GuiVisibilityHidden.svg" id="5_p5jgr"]
+
+[node name="PluginRow" type="HBoxContainer" node_paths=PackedStringArray("isEnabledCheckBox", "shouldToggleCheckBox", "hiddenCheckbox", "nameLabel")]
+custom_minimum_size = Vector2(240, 0)
+script = ExtResource("1_wtpbw")
+isEnabledCheckBox = NodePath("Cell/CheckBox")
+shouldToggleCheckBox = NodePath("Cell2/CheckBox")
+hiddenCheckbox = NodePath("Cell4/Visible")
+nameLabel = NodePath("Cell3/Label3")
+
+[node name="Cell" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="Cell"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Cell"]
+layout_mode = 2
+text = "On"
+label_settings = ExtResource("1_k2r8t")
+
+[node name="Cell2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="Cell2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Cell2"]
+layout_mode = 2
+text = "Use"
+label_settings = ExtResource("1_k2r8t")
+
+[node name="Cell3" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.57
+
+[node name="Label3" type="LineEdit" parent="Cell3"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "teststtetstettsttstettse"
+theme_override_fonts/font = ExtResource("2_55j71")
+text = "name_dasist_etwas lang
+"
+editable = false
+flat = true
+
+[node name="Cell4" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Visible" type="CheckBox" parent="Cell4"]
+layout_mode = 2
+tooltip_text = "Is Hidden"
+theme_override_icons/checked = ExtResource("4_ucd54")
+theme_override_icons/unchecked = ExtResource("5_p5jgr")
