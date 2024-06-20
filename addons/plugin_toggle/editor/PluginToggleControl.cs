@@ -144,7 +144,7 @@ public partial class PluginToggleControl : PanelContainer {
             SetConfigValue(
                 name,
                 enabled,
-                configData.ContainsKey(name) && configData[name][useToggleKey],
+                configData[name][useToggleKey],
                 configData[name][visibleKey]
             );
         }

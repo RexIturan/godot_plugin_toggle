@@ -90,6 +90,8 @@ public partial class PluginRow : HBoxContainer {
         shouldToggleCheckBox.TryConnect<bool>(toggled, HandleUseToggleToggled);
         visibleCheckbox.TryConnect<bool>(toggled, HandleVisibleToggled);
 
+        isEnabledCheckBox.ButtonPressed = PluginEnabled;
+        shouldToggleCheckBox.ButtonPressed = PluginUseToggle;
         visibleCheckbox.ButtonPressed = PluginVisible;
         
         unloadHandle = RegisterUnload(Cleanup);

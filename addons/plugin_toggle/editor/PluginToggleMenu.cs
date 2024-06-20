@@ -1,6 +1,9 @@
 #if TOOLS
+using System;
+using System.Runtime.Loader;
 using Godot;
 using plugin_toggle.util;
+using static plugin_toggle.util.PlugInToggleNodeExtension;
 
 namespace addons.plugin_toggle.editor;
 
@@ -13,6 +16,10 @@ public partial class PluginToggleMenu : MarginContainer {
 
     private bool ShowHidden { get; set; } = false;
     
+    ///// Editor Plugin Helper /////
+    
+    private Action<AssemblyLoadContext> unloadHandle;
+    
     ///// Godot Functions /////
 
     public override void _EnterTree() {
@@ -23,6 +30,8 @@ public partial class PluginToggleMenu : MarginContainer {
         visibilityCheckbox.ButtonPressed = ShowHidden;
         
         visibilityCheckbox.TryConnect<bool>(BaseButton.SignalName.Toggled, ToggleVisibility);
+
+        unloadHandle = RegisterUnload(Cleanup);
     }
 
     public override void _ExitTree() {
@@ -31,6 +40,8 @@ public partial class PluginToggleMenu : MarginContainer {
     }
 
     private void Cleanup() {
+        UnregisterUnload(unloadHandle);
+        
         if (!IsInstanceValid(this)) return;
         
         visibilityCheckbox.TryDisconnect<bool>(BaseButton.SignalName.Toggled, ToggleVisibility);
