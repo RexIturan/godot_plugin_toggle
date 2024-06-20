@@ -12,7 +12,7 @@ public partial class PluginRow : HBoxContainer {
     private StringName toggled = BaseButton.SignalName.Toggled;
     [Export] private CheckBox isEnabledCheckBox;
     [Export] private CheckBox shouldToggleCheckBox;
-    [Export] private CheckBox hiddenCheckbox;
+    [Export] private CheckBox visibleCheckbox;
     [Export] private LineEdit nameLabel;
 
     private bool printDebug;
@@ -67,8 +67,8 @@ public partial class PluginRow : HBoxContainer {
             isVisible = value;
             
             if (printDebug) GD.Print($"[PluginRow] change PluginUseToggle");
-            if (hiddenCheckbox is not null && hiddenCheckbox.ButtonPressed != enabled) {
-                hiddenCheckbox.SetPressedNoSignal(isVisible);
+            if (visibleCheckbox is not null && visibleCheckbox.ButtonPressed != enabled) {
+                visibleCheckbox.SetPressedNoSignal(isVisible);
             }
             
             EmitSignal(SignalName.Updated, PluginName, PluginEnabled, PluginUseToggle, isVisible);
@@ -88,8 +88,10 @@ public partial class PluginRow : HBoxContainer {
 
         isEnabledCheckBox.TryConnect<bool>(toggled, HandleEnabledToggled);
         shouldToggleCheckBox.TryConnect<bool>(toggled, HandleUseToggleToggled);
-        hiddenCheckbox.TryConnect<bool>(toggled, HandleVisibleToggled);
+        visibleCheckbox.TryConnect<bool>(toggled, HandleVisibleToggled);
 
+        visibleCheckbox.ButtonPressed = PluginVisible;
+        
         unloadHandle = RegisterUnload(Cleanup);
     }
 
@@ -105,7 +107,7 @@ public partial class PluginRow : HBoxContainer {
         if (!IsInstanceValid(this)) return;
         isEnabledCheckBox.TryDisconnect<bool>(toggled, HandleEnabledToggled);
         shouldToggleCheckBox.TryDisconnect<bool>(toggled, HandleUseToggleToggled);
-        hiddenCheckbox.TryDisconnect<bool>(toggled, HandleVisibleToggled);
+        visibleCheckbox.TryDisconnect<bool>(toggled, HandleVisibleToggled);
 
         // this.TryDisconnect(SignalName.Updated, updateFunction);
         // updateFunction = null;

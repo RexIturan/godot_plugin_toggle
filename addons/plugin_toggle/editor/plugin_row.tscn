@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cvlj6ig27tafl" path="res://addons/plugin_toggle/icons/GuiVisibilityVisible.svg" id="4_ucd54"]
 [ext_resource type="Texture2D" uid="uid://bxedqn5wb1bgo" path="res://addons/plugin_toggle/icons/GuiVisibilityHidden.svg" id="5_p5jgr"]
 
-[node name="PluginRow" type="HBoxContainer" node_paths=PackedStringArray("isEnabledCheckBox", "shouldToggleCheckBox", "hiddenCheckbox", "nameLabel")]
+[node name="PluginRow" type="HBoxContainer" node_paths=PackedStringArray("isEnabledCheckBox", "shouldToggleCheckBox", "visibleCheckbox", "nameLabel")]
 custom_minimum_size = Vector2(240, 0)
 script = ExtResource("1_wtpbw")
 isEnabledCheckBox = NodePath("Cell/CheckBox")
 shouldToggleCheckBox = NodePath("Cell2/CheckBox")
-hiddenCheckbox = NodePath("Cell4/Visible")
+visibleCheckbox = NodePath("Cell4/Visible")
 nameLabel = NodePath("Cell3/Label3")
 
 [node name="Cell" type="HBoxContainer" parent="."]

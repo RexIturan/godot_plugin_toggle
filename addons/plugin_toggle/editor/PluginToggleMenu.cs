@@ -45,7 +45,6 @@ public partial class PluginToggleMenu : MarginContainer {
     public PluginRow AddRow(string name, bool enabled, bool useToggle, bool visible) {
         var row = CreateRow(name, enabled, useToggle, visible);
         pluginTable.AddChild(row);
-        UpdateRowVisibility();
         return row;
     }
     
@@ -58,6 +57,7 @@ public partial class PluginToggleMenu : MarginContainer {
 
         foreach (var pluginRow in rows) {
             pluginRow.Visible = ShowHidden | pluginRow.PluginVisible;
+            // GD.Print($"[Menu] UpdateRowVisibility {pluginRow.PluginName} {pluginRow.PluginVisible}");
         }
     }
     
@@ -73,6 +73,7 @@ public partial class PluginToggleMenu : MarginContainer {
     private PluginRow CreateRow(string name, bool enabled, bool useToggle, bool visible) {
         var row = rowPrefab.InstantiateOrNull<PluginRow>();
 
+        // GD.Print($"[Menu] {name} {visible}");
         row.PluginName = name;
         row.PluginEnabled = enabled;
         row.PluginUseToggle = useToggle;

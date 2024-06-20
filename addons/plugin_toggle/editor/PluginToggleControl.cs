@@ -125,6 +125,8 @@ public partial class PluginToggleControl : PanelContainer {
             var item = menu.AddRow(name, values[enabledKey], values[useToggleKey], values[visibleKey]);
             item.Updated += UpdateConfigValue;
         }
+        
+        menu.UpdateRowVisibility();
     }
 
     private void LoadCurrentPlugins() {
